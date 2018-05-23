@@ -8,6 +8,7 @@ class Consulta {
         this._data = data;
     }
 
+
     preco(){
         if(this._retorno) return 0;
 
@@ -25,6 +26,24 @@ class Consulta {
         return precoFinal;
     }
 
+    finalizarConsulta(paciente) {
+        let dayMilisseconds = 1000 * 60 * 60 * 24;
+        let twentyFiveDaysMilisseconds = 25 * dayMilisseconds;
+        let today = new Date().getTime();
+        let diaDoRetorno = new Date(twentyFiveDaysMilisseconds + today);
+        
+        if (diaDoRetorno.getDay() == 0){
+            diaDoRetorno = new Date(twentyFiveDaysMilisseconds + today + dayMilisseconds);
+            console.log("D1: ", diaDoRetorno.getDate());
+            
+        }else if (diaDoRetorno.getDay() == 6){
+            diaDoRetorno = new Date(twentyFiveDaysMilisseconds + today + (2*dayMilisseconds));
+            console.log("D2: ", diaDoRetorno.getDate());
+        }
+
+        let consultaRetorno = new Consulta(paciente, [], false, true, diaDoRetorno);
+        return consultaRetorno;
+    }
     
 
     isRetorno(){

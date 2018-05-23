@@ -5,12 +5,14 @@ class ConsultaBuilder {
         this._procedimentos = ['proc1', 'proc2'];
         this._particular = false;
         this._retorno = false;
-        
+        this._date = new Date();
     }
 
     build(){
-        return new Consulta(this._paciente, this._procedimentos, this._particular, this._retorno);
+        return new Consulta(this._paciente, this._procedimentos, this._particular, this._retorno, this._date);
     }
+
+    
 
     procedimentos(procedimentos){
         this._procedimentos = procedimentos;

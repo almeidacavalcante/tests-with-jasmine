@@ -39,8 +39,18 @@ describe("Consulta", () => {
         expect(consulta.preco()).toEqual(50);
     })
 
-    it("Deve agendar uma consulta para 20 dias para a frente!", () => {
+    it("Deve agendar uma consulta para 25 dias para a frente!", () => {
         let consulta = new ConsultaBuilder().build();
-        consulta.get
+
+        let dayMilisseconds = 1000 * 60 * 60 * 24;
+        let twentyFiveDaysMilisseconds = 25 * dayMilisseconds;
+        let today = new Date().getTime();
+        let con = new Consulta(almeida, [], false, false);
+        diaDoRetorno = new Date(twentyFiveDaysMilisseconds + today + (dayMilisseconds))
+
+        console.log('DIA DO RETORNO: ', diaDoRetorno.getDate());
+
+
+        expect(consulta.finalizarConsulta(almeida)._data.getDate()).toEqual(diaDoRetorno.getDate());
     })
 })
